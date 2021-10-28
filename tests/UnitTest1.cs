@@ -30,21 +30,22 @@ namespace NotebookTesting
             [TestMethod]
             public void T0010_canType()
             {
-                notepadMain.typeRandomWordInEditBox();
+                notepadMain.TypeRandomWordInEditBox();
             }
             
             [TestMethod]
             public void T0020_canDeleteAll()
             {
-                notepadMain.typeRandomWordInEditBox()
-                    .deleteAllText();
+                notepadMain.TypeRandomWordInEditBox()
+                    .DeleteAllText()
+                    .IsBlank();
             }
             
 
             [TestCleanup]
             public void closeApp()
             {
-                notepadMain.quitDriver();
+                notepadMain.QuitDriver();
 
             }
         }
