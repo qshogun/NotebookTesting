@@ -14,8 +14,8 @@ namespace NotebookTesting
     public class BasePage
     {
         
-        private const int TIME_OUT_FOR_ELEMENT = 20;
-        private WindowsDriver<WindowsElement> driver;
+        private const int TimeOutForElement = 20;
+        private WindowsDriver<WindowsElement> driver { get; set; }
 
         public BasePage()
         {
@@ -28,7 +28,7 @@ namespace NotebookTesting
                 AppiumOptions appCapabilities = new AppiumOptions();
                 appCapabilities.AddAdditionalCapability("app", applicationPathOrAppName);
                 driver = new WindowsDriver<WindowsElement>(new Uri(winAPPDriverServer), appCapabilities);
-                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(TIME_OUT_FOR_ELEMENT);
+                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(TimeOutForElement);
 
             } catch (Exception e)
             {
@@ -36,12 +36,12 @@ namespace NotebookTesting
             }
 
         }
-        public WindowsDriver<WindowsElement> getDriver()
+        public WindowsDriver<WindowsElement> GetDriver()
         {
             return driver;
         }
 
-        public void enterText(WindowsElement windowsElement, string text)
+        public void EnterText(WindowsElement windowsElement, string text)
         {
             try
             {
@@ -54,9 +54,12 @@ namespace NotebookTesting
                 Console.WriteLine(e.Message);
             }
         }
-        public void quitDriver()
+        public void QuitDriver()
         {
-            driver.Quit();
+            if (driver != null)
+            {
+                driver.Quit();
+            }
         }
     }
 }
