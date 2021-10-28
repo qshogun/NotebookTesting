@@ -1,8 +1,6 @@
 ﻿using System;
 using OpenQA.Selenium.Appium.Windows;
 using OpenQA.Selenium.Appium;
-
-
 namespace NotebookTesting
 {
     public class BasePage
@@ -13,7 +11,6 @@ namespace NotebookTesting
 
         public BasePage()
         {
-
         }
         public BasePage(string applicationPathOrAppName, string winAPPDriverServer)
         {
@@ -28,13 +25,11 @@ namespace NotebookTesting
             {
                 Console.WriteLine(e.Message);
             }
-
         }
         public WindowsDriver<WindowsElement> GetDriver()
         {
             return driver;
         }
-
         public void EnterText(WindowsElement windowsElement, string text)
         {
             try
