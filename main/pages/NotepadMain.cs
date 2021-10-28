@@ -26,34 +26,33 @@ namespace NotebookTesting
         {
             return driver.FindElement(EditBox);
         }
+
+
         protected static WindowsElement plik;
-        protected static WindowsElement zapisz;
-        protected static WindowsElement nazwaPliku;
-        protected static WindowsElement zapiszButton;
 
         [Obsolete]
         public NotepadMain(string applicationPathOrAppName, string winAPPDriverServer)
             : base(applicationPathOrAppName, winAPPDriverServer)
         {
-            this.driver = getDriver();
-            PageFactory.InitElements(driver, this);
+            this.driver = GetDriver();
+            PageFactory.InitElements(this.driver, this);
         }
 
-        public NotepadMain typeRandomWordInEditBox()
+        public NotepadMain TypeRandomWordInEditBox()
         {
             string randomWord = Name.First();
             EditBoxElement().SendKeys(randomWord);
             return this;
         }
-        public NotepadMain deleteAllText()
+        public NotepadMain DeleteAllText()
         {
             EditBoxElement().SendKeys(Keys.Control + 'a');
             EditBoxElement().SendKeys(Keys.Delete);
             return this;
         }
-        public NotepadMain isBlank()
+        public NotepadMain IsBlank()
         {
-            Assert.IsNull(EditBoxElement().Text);
+            Assert.AreEqual(string.Empty, EditBoxElement().Text);
             return this;
         }
         
