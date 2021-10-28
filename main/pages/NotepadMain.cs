@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using OpenQA.Selenium.Appium.Windows;
-using OpenQA.Selenium.Appium;
-using OpenQA.Selenium.Remote;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using Faker;
@@ -34,7 +28,7 @@ namespace NotebookTesting
         public NotepadMain(string applicationPathOrAppName, string winAPPDriverServer)
             : base(applicationPathOrAppName, winAPPDriverServer)
         {
-            this.driver = GetDriver();
+           // this.driver = GetDriver();
             PageFactory.InitElements(this.driver, this);
         }
 

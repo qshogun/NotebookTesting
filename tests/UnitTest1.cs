@@ -1,9 +1,5 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Appium.Windows;
-using OpenQA.Selenium.Remote;
-using Faker;
 
 namespace NotebookTesting
 {
@@ -30,7 +26,8 @@ namespace NotebookTesting
             [TestMethod]
             public void T0010_canType()
             {
-                notepadMain.TypeRandomWordInEditBox();
+                notepadMain.TypeRandomWordInEditBox()
+                    .IsTextEqual();
             }
             
             [TestMethod]
