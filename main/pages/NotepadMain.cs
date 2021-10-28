@@ -2,7 +2,6 @@
 using OpenQA.Selenium.Appium.Windows;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
-using Faker;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace NotebookTesting
@@ -10,45 +9,30 @@ namespace NotebookTesting
     public class NotepadMain : BasePage
     {
         private WindowsDriver<WindowsElement> driver;
-
-        //[FindsBy(How = How.ClassName, Using = "Edit")]
-        //public WindowsElement editBox { get; set; }
-
-        public By EditBox { get; set; } = By.ClassName("Edit");
-
-        protected WindowsElement EditBoxElement()
-        {
-            return driver.FindElement(EditBox);
-        }
-
-
-        protected static WindowsElement plik;
+        public WindowsElement EditBox => driver.FindElement(By.ClassName("Edit"));
 
         [Obsolete]
         public NotepadMain(string applicationPathOrAppName, string winAPPDriverServer)
             : base(applicationPathOrAppName, winAPPDriverServer)
         {
-           // this.driver = GetDriver();
+            this.driver = GetDriver();
             PageFactory.InitElements(this.driver, this);
         }
-
-        public NotepadMain TypeRandomWordInEditBox()
+        public NotepadMain TypeTextInEditBox(string text)
         {
-            string randomWord = Name.First();
-            EditBoxElement().SendKeys(randomWord);
+            EditBox.SendKeys(text);
             return this;
         }
         public NotepadMain DeleteAllText()
         {
-            EditBoxElement().SendKeys(Keys.Control + 'a');
-            EditBoxElement().SendKeys(Keys.Delete);
+            EditBox.SendKeys(Keys.Control + 'a');
+            EditBox.SendKeys(Keys.Delete);
             return this;
         }
         public NotepadMain IsBlank()
         {
-            Assert.AreEqual(string.Empty, EditBoxElement().Text);
+            Assert.AreEqual(string.Empty, EditBox.Text);
             return this;
         }
-        
     }
 }
