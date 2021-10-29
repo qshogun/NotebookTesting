@@ -75,6 +75,7 @@
     <Compile Include="main\common\BasePage.cs" />
     <Compile Include="main\pages\FileMenu.cs" />
     <Compile Include="main\pages\NotepadMain.cs" />
+    <Compile Include="main\pages\SsvePopUpDialog.cs" />
     <Compile Include="main\utils\Helpers.cs" />
     <Compile Include="test\TestSuite.cs" />
     <Compile Include="test\UnitTest1.cs" />
