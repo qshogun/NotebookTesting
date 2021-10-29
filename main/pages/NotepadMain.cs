@@ -14,6 +14,12 @@ namespace NotebookTesting
         public WindowsElement ViewMenu => driver.FindElementByName("Widok");
         public WindowsElement HelpMenu => driver.FindElementByName("Pomoc");
 
+        // Windows Elements visible on exit pop up (when changes are not saved)
+        public WindowsElement MessagePopUp => driver.FindElementByAccessibilityId("MainInstruction");
+        public WindowsElement SaveButton => driver.FindElementByAccessibilityId("CommandButton_6");
+        public WindowsElement DontSaveButton => driver.FindElementByAccessibilityId("CommandButton_7");
+        public WindowsElement CancelButton => driver.FindElementByAccessibilityId("CommandButton_2");
+
         [Obsolete]
         public NotepadMain(WindowsDriver<WindowsElement> driver)
             : base(driver)
