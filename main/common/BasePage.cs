@@ -1,31 +1,20 @@
 ﻿using System;
 using OpenQA.Selenium.Appium.Windows;
-using OpenQA.Selenium.Appium;
+using OpenQA.Selenium.Support.PageObjects;
+
 namespace NotebookTesting
 {
     public class BasePage
     {
         
-        private const int TimeOutForElement = 20;
-        private WindowsDriver<WindowsElement> driver { get; set; }
+        public WindowsDriver<WindowsElement> driver { get; set; }
 
-        public BasePage()
+        public BasePage(WindowsDriver<WindowsElement> driver)
         {
-        }
-        public BasePage(string applicationPathOrAppName, string winAPPDriverServer)
-        {
-            try
-            {
-                AppiumOptions appCapabilities = new AppiumOptions();
-                appCapabilities.AddAdditionalCapability("app", applicationPathOrAppName);
-                driver = new WindowsDriver<WindowsElement>(new Uri(winAPPDriverServer), appCapabilities);
-                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(TimeOutForElement);
-
-            } catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
-        }
+            this.driver = driver;
+            PageFactory.InitElements(this.driver, this);
+        }        
+        
         public WindowsDriver<WindowsElement> GetDriver()
         {
             return driver;
