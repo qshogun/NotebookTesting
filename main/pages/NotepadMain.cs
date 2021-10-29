@@ -2,21 +2,23 @@
 using OpenQA.Selenium.Appium.Windows;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace NotebookTesting
 {
     public class NotepadMain : BasePage
     {
-        private WindowsDriver<WindowsElement> driver;
+        // Windows Elements visible on the main screen
         public WindowsElement EditBox => driver.FindElement(By.ClassName("Edit"));
+        public WindowsElement FileMenu => driver.FindElementByName("Plik");
+        public WindowsElement EditMenu => driver.FindElementByName("Edycja");
+        public WindowsElement FormatMenu => driver.FindElementByName("Format");
+        public WindowsElement ViewMenu => driver.FindElementByName("Widok");
+        public WindowsElement HelpMenu => driver.FindElementByName("Pomoc");
 
         [Obsolete]
-        public NotepadMain(string applicationPathOrAppName, string winAPPDriverServer)
-            : base(applicationPathOrAppName, winAPPDriverServer)
+        public NotepadMain(WindowsDriver<WindowsElement> driver)
+            : base(driver)
         {
-            this.driver = GetDriver();
-            PageFactory.InitElements(this.driver, this);
         }
         public NotepadMain TypeTextInEditBox(string text)
         {
@@ -27,11 +29,6 @@ namespace NotebookTesting
         {
             EditBox.SendKeys(Keys.Control + 'a');
             EditBox.SendKeys(Keys.Delete);
-            return this;
-        }
-        public NotepadMain IsBlank()
-        {
-            Assert.AreEqual(string.Empty, EditBox.Text);
             return this;
         }
     }
