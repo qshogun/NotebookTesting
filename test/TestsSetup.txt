@@ -1,0 +1,2 @@
+﻿WinAPPDriverServer = "http://127.0.0.1:4723";
+ApplicationPathOrAppName = @"C:\Windows\System32\notepad.exe";
