@@ -12,6 +12,7 @@ namespace NotebookTesting
         {
             private NotepadMain notepadMain;
             private FileMenu fileMenu;
+            private SavePopUpDialog savePopUpDialog;
 
             [TestInitialize]
             [Obsolete]
@@ -19,6 +20,7 @@ namespace NotebookTesting
             {
                 notepadMain = new NotepadMain(driver);
                 fileMenu = new FileMenu(driver);
+                savePopUpDialog = new SavePopUpDialog(driver);
                 notepadMain.DeleteAllText();
                 Assert.AreEqual(string.Empty, notepadMain.EditBox.Text);
             }
@@ -44,21 +46,38 @@ namespace NotebookTesting
                 Assert.AreEqual(string.Empty, notepadMain.EditBox.Text);
             }
             [TestMethod]
-            public void CanClose()
+            public void CanSaveFile()
             {
                 // Arrange
-
+                var randomText = Lorem.Sentence(minWordCount: 3);
+                var randomWord = Name.First();
+                
                 // Act
-                notepadMain.FileMenu.Click();
-                fileMenu.CloseButton.Click();
+                notepadMain.TypeTextInEditBox(randomText)
+                    .FileMenu.Click();
+                fileMenu.SaveAsButton.Click();
+                savePopUpDialog.TypeFileName(randomWord)
+                    .SaveButton.Click();
+
                 // Assert
-                // TODO
+                Assert.IsTrue(driver.Title.Contains(randomWord));
             }
             
             [TestCleanup]
             public void CloseApp()
             {
-                notepadMain.QuitDriver();
+                if(driver!=null)
+                {
+                    driver.Close();
+                    try
+                    {
+                        notepadMain.DontSaveButton.Click();
+                    } catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+                }
+                driver.Quit();
             }
         }
     }
