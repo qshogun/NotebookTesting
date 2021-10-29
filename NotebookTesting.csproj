@@ -73,12 +73,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="main\common\BasePage.cs" />
+    <Compile Include="main\pages\FileMenu.cs" />
     <Compile Include="main\pages\NotepadMain.cs" />
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="main\utils\Helpers.cs" />
+    <Compile Include="test\TestSuite.cs" />
+    <Compile Include="test\UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="test\TestsSetup.txt" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
