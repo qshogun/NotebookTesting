@@ -1,7 +1,4 @@
-﻿using System;
-using OpenQA.Selenium.Appium.Windows;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Support.PageObjects;
+﻿using OpenQA.Selenium.Appium.Windows;
 
 namespace NotebookTesting
 {

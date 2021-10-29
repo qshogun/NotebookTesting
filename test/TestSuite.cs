@@ -1,10 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Faker;
 using OpenQA.Selenium.Appium.Windows;
 using OpenQA.Selenium.Appium;
-using OpenQA.Selenium.Support.PageObjects;
-using System.Collections.Generic;
 
 namespace NotebookTesting
 {

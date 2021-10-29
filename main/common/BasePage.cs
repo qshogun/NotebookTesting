@@ -6,15 +6,12 @@ namespace NotebookTesting
 {
     public class BasePage
     {
-        
         public WindowsDriver<WindowsElement> driver { get; set; }
-
         public BasePage(WindowsDriver<WindowsElement> driver)
         {
             this.driver = driver;
             PageFactory.InitElements(this.driver, this);
         }        
-        
         public WindowsDriver<WindowsElement> GetDriver()
         {
             return driver;
