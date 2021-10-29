@@ -6,25 +6,24 @@ namespace NotebookTesting
 {
     public class NotepadSession
     {
-        private const string _WinAPPDriverServer = "http://127.0.0.1:4723";
-        private const string _ApplicationPathOrAppName = @"C:\Windows\System32\notepad.exe";
-
+        
         [TestClass]
-        public class SmokeTests
+        public class SmokeTests : TestSuite
         {
             private NotepadMain notepadMain;
+            private FileMenu fileMenu;
 
             [TestInitialize]
             [Obsolete]
-            public void initializeTests()
+            public void InitializeTests()
             {
-                notepadMain = new NotepadMain(_ApplicationPathOrAppName, _WinAPPDriverServer);
+                notepadMain = new NotepadMain(driver);
+                fileMenu = new FileMenu(driver);
                 notepadMain.DeleteAllText();
                 Assert.AreEqual(string.Empty, notepadMain.EditBox.Text);
-
             }
             [TestMethod]
-            public void T0010_canType()
+            public void CanType()
             {
                 // Arrange
                 var randomWord = Name.First();
@@ -34,7 +33,7 @@ namespace NotebookTesting
                 Assert.AreEqual(randomWord, notepadMain.EditBox.Text);
             }
             [TestMethod]
-            public void T0020_canDeleteAll()
+            public void CanDeleteAll()
             {
                 // Arrange
                 var randomWord = Name.First();
@@ -44,12 +43,22 @@ namespace NotebookTesting
                 // Assert
                 Assert.AreEqual(string.Empty, notepadMain.EditBox.Text);
             }
+            [TestMethod]
+            public void CanClose()
+            {
+                // Arrange
+
+                // Act
+                notepadMain.FileMenu.Click();
+                fileMenu.CloseButton.Click();
+                // Assert
+                // TODO
+            }
             
             [TestCleanup]
-            public void closeApp()
+            public void CloseApp()
             {
                 notepadMain.QuitDriver();
-
             }
         }
     }
